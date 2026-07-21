@@ -1,0 +1,25 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'SKILL.md'
+      - 'claw.json'
+      - 'scripts/**'
+      - 'README.md'
+
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish skill to ClawHub
+        uses: openclaw/clawhub/skill-publish@main
+        with:
+          token: ${{ secrets.CLAWHUB_TOKEN }}
+          skill_path: .
+          dry_run: false
