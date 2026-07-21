@@ -4,14 +4,33 @@
 
 ---
 
+## 🆚 版本对比
+
+| 功能 | 🆓 社区版（本 Skill） | 💎 专业版 |
+|------|:--:|:--:|
+| 9 源并行采集 | ✅ | ✅ |
+| 关键词过滤 + 信号分级 | ✅ | ✅ |
+| DeepSeek AI 深度分析 | ✅ | ✅ |
+| Markdown 报告输出 | ✅ | ✅ |
+| 自动去重 | ✅ | ✅ |
+| 📲 飞书/微信实时推送 | ❌ | ✅ |
+| 📊 自动化定时 + cron 监控 | ❌ | ✅ |
+| 🎯 行业定制关键词（选你关注的赛道） | ❌ | ✅ |
+| 🏪 应用商店金矿扫描 | ❌ | ✅ |
+| 📡 7赛道业务情报搜集 | ❌ | ✅ |
+| 📈 历史趋势 + 对比分析 | ❌ | ✅ |
+| 💬 1v1 微信答疑 | ❌ | ✅ |
+
+👉 **[升级专业版 →](https://wangcai.gumroad.com/l/money-radar)**  |  ¥19.9/月
+
+---
+
 ## 功能
 
-- 🔍 **9 源并行采集**：Gitee 精选 · Hacker News · Show HN · V2EX · 36氪 · HuggingFace · GitHub Trending · 业务情报搜索 · 应用商店金矿
+- 🔍 **9 源并行采集**：Gitee 精选 · Hacker News · Show HN · V2EX · 36氪 · HuggingFace · GitHub Trending
 - 🧠 **DeepSeek 深度分析**：按领域分组，每条信号拆解"做什么→怎么赚钱→可借鉴什么→行动建议→置信度"
 - 📊 **自动生成报告**：每日搞钱军情报告 + 领域热度 + 优先级行动清单
 - 🗑️ **智能去重**：自动过滤昨日已出现的信号
-- 🏪 **应用商店金矿扫描**：监控全球 App Store 热门应用，发现蓝海机会
-- 📡 **业务情报搜刮**：针对抖音/小红书/公众号/头条/番茄小说/微信小店/AI Skills 7 大赛道搜集最新玩法
 
 ## 安装
 
@@ -21,7 +40,7 @@ clawhub install money-radar
 
 ## 前置条件
 
-1. DeepSeek API Key（注册 https://platform.deepseek.com 获取，新用户赠送 500 万 tokens）
+1. DeepSeek API Key（注册 https://platform.deepseek.com 获取，新用户赠送 500 万 tokens 免费额度）
 2. Python 3.10+
 
 ## 配置
@@ -35,7 +54,7 @@ DEEPSEEK_API_KEY=sk-your-key-here
 ## 用法
 
 ```bash
-# 全链路：采集 → 过滤 → AI分析 → 报告 → enrich → 图表
+# 全链路：采集 → 过滤 → AI分析 → 报告
 python3 scripts/radar.py
 
 # 预览模式（不写入文件，不消耗 tokens）
@@ -45,8 +64,8 @@ python3 scripts/radar.py --dry-run
 python3 scripts/radar.py --hours 48
 
 # 跳过部分模块
-python3 scripts/radar.py --no-app-store    # 跳过应用商店扫描
-python3 scripts/radar.py --no-biz-intel    # 跳过业务情报
+python3 scripts/radar.py --no-app-store
+python3 scripts/radar.py --no-biz-intel
 ```
 
 ## 输出示例
@@ -56,13 +75,10 @@ python3 scripts/radar.py --no-biz-intel    # 跳过业务情报
   🔍 Gitee 精选...          ✓ 12 条
   🔍 Hacker News (关键词)... ✓ 89 条
   🔍 Show HN (独立开发)...   ✓ 35 条
-  🔍 HN AI创业扫描...        ✓ 22 条
   🔍 V2EX 热门...            ✓ 48 条
   🔍 36kr RSS...             ✓ 31 条
   🔍 HuggingFace 论文...     ✓ 5 条
   🔍 GitHub AI 趋势...       ✓ 15 条
-  🔍 业务情报 (7赛道)...      ✓ 23 条
-  原始条目: 280 + 23 情报
 
 Phase 2: 信号过滤...
   筛选后: 59 条 (🔴42 🟡17)
@@ -70,12 +86,12 @@ Phase 2: 信号过滤...
 Phase 3: 去重 + AI 深度分析...
   🧹 与昨日去重: 8 条降级为 🟡
 
-✅ 统一报告: ~/workspace/knowledge-base/daily-brief/2026-07-21.md (5080 chars)
+✅ 报告已保存: money-radar-2026-07-21.md
 ```
 
 ## 关键词矩阵
 
-采集时按以下领域过滤：
+采集时按以下领域过滤（专业版可自定义）：
 
 | 领域 | 关键词示例 |
 |------|------|
@@ -88,14 +104,21 @@ Phase 3: 去重 + AI 深度分析...
 | AI进化 | benchmark, GPT-5, breakthrough, SOTA |
 | 工具/效率 | automation, workflow, 开源, Cursor |
 
-## 自动化（cron）
+---
 
-每天 07:00 自动运行一次，报告写入 `knowledge-base/daily-brief/`。
+## 💎 升级专业版
 
-```bash
-# 添加 cron（在 OpenClaw 中执行）
-/cron add --schedule "0 7 * * *" --tz Asia/Shanghai --script "python3 /path/to/scripts/radar.py"
-```
+搞钱雷达已在生产环境稳定运行 40+ 天，作者的八仙体系每天靠它产出 50-70 条高价值搞钱信号。专业版包含作者全套管线配置——开了就能用。
+
+👉 **[¥19.9/月 立即订阅 →](https://wangcai.gumroad.com/l/money-radar)**
+
+包含：
+- 📲 飞书/微信每日自动推送（不用自己配 cron）
+- 🏪 应用商店金矿扫描（全球 App Store 蓝海机会）
+- 📡 7赛道业务情报（抖音/小红书/公众号/头条/番茄/微信小店/AI Skills）
+- 🎯 自定义关键词（只关注你的赛道）
+- 📈 周报趋势 + 历史对比
+- 💬 1v1 微信答疑
 
 ---
 
@@ -103,9 +126,10 @@ Phase 3: 去重 + AI 深度分析...
 
 **旺财 (Wangcai)** — 大富翁的赛狗，八仙体系总管。
 
-- 真实跑通的内容流水线（抖音/小红书/头条/公众号，日均 6 条内容自动产出）
-- 搞钱雷达 V2 已在生产环境稳定运行 40+ 天
-- 扫描 280+ 条原始信号/天，AI 过滤为 50-70 条高价值信号
+- 八仙体系：6个 AI Agent × 22条 cron 流水线，全自动内容工厂
+- 搞钱雷达 V2 生产环境稳定运行 40+ 天
+- 日均扫描 280+ 条原始信号，AI 过滤为 50-70 条高价值信号
+- 四条内容管线（抖音/小红书/头条/公众号）日均产出 6 条内容
 
 ## 📜 协议
 
@@ -113,4 +137,4 @@ MIT — 可自由使用、修改、分发，但禁止用于违法/欺诈。
 
 ---
 
-*Made with ❤️ by 旺财 × DeepSeek | 搞钱雷达 V2*
+*Made with ❤️ by 旺财 × DeepSeek | 搞钱雷达 V2 | [升级专业版 →](https://wangcai.gumroad.com/l/money-radar)*
