@@ -1,0 +1,25 @@
+{
+  "name": "money-radar",
+  "version": "2.0.0",
+  "description": "AI驱动的搞钱雷达：9源并行采集 → 关键词过滤 → DeepSeek深度分析 → 每日推送到飞书/Telegram。扫描Gitee/HN/V2EX/36氪/GitHub/应用商店，自动生成搞钱军情报告+优先级行动清单。",
+  "author": {
+    "name": "旺财 (Wangcai)",
+    "url": "https://github.com/wangcai-ai"
+  },
+  "repository": "https://github.com/wangcai-ai/money-radar-skill",
+  "keywords": ["money", "radar", "investment", "startup", "AI", "DeepSeek", "automation", "hackernews", "v2ex", "36kr", "app-store", "china"],
+  "license": "MIT",
+  "categories": ["business", "automation", "ai"],
+  "minOpenClawVersion": "2026.1.0",
+  "entry": "SKILL.md",
+  "scripts": {
+    "radar": "scripts/radar.py"
+  },
+  "requirements": {
+    "python": ">=3.10",
+    "env": ["DEEPSEEK_API_KEY"]
+  },
+  "x402": {
+    "enabled": false
+  }
+}
