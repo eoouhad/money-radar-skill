@@ -12,7 +12,7 @@
 | | 🆓 社区版 | 💎 专业版 |
 |---|:--:|:--:|
 | 价格 | **免费** | ¥19.9/月 |
-| 安装 | `clawhub install money-radar` | [立即订阅 →](https://wangcai.gumroad.com/l/money-radar) |
+| 安装 | `clawhub install money-radar` | [立即订阅 →](https://mbd.pub/satang) |
 
 ## 🚀 快速开始
 
@@ -41,4 +41,4 @@ python3 scripts/radar.py
 
 生产环境稳定运行 40+ 天，日均扫描 280+ 条信号。专业版包含作者全套配置。
 
-👉 **[¥19.9/月 订阅 →](https://wangcai.gumroad.com/l/money-radar)**
+👉 **[¥19.9/月 订阅 →](https://mbd.pub/satang)**
