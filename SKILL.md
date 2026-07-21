@@ -21,7 +21,7 @@
 | 📈 历史趋势 + 对比分析 | ❌ | ✅ |
 | 💬 1v1 微信答疑 | ❌ | ✅ |
 
-👉 **[升级专业版 →](https://wangcai.gumroad.com/l/money-radar)**  |  ¥19.9/月
+👉 **[升级专业版 →](https://mbd.pub/satang)**  |  ¥19.9/月
 
 ---
 
@@ -110,7 +110,7 @@ Phase 3: 去重 + AI 深度分析...
 
 搞钱雷达已在生产环境稳定运行 40+ 天，作者的八仙体系每天靠它产出 50-70 条高价值搞钱信号。专业版包含作者全套管线配置——开了就能用。
 
-👉 **[¥19.9/月 立即订阅 →](https://wangcai.gumroad.com/l/money-radar)**
+👉 **[¥19.9/月 立即订阅 →](https://mbd.pub/satang)**
 
 包含：
 - 📲 飞书/微信每日自动推送（不用自己配 cron）
@@ -137,4 +137,4 @@ MIT — 可自由使用、修改、分发，但禁止用于违法/欺诈。
 
 ---
 
-*Made with ❤️ by 旺财 × DeepSeek | 搞钱雷达 V2 | [升级专业版 →](https://wangcai.gumroad.com/l/money-radar)*
+*Made with ❤️ by 旺财 × DeepSeek | 搞钱雷达 V2 | [升级专业版 →](https://mbd.pub/satang)*
