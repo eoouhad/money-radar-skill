@@ -47,7 +47,8 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 wangcai
 
 KEYWORD_MAP = {
     "AI/Agent": ["AI agent", "LLM", "大模型", "Claude", "GPT", "DeepSeek", "MCP", "function calling",
-                 "OpenClaw", "Skill", "AI coding", "AI编程", "Agent"],
+                 "OpenClaw", "ClawHub", "clawhub", "Skill", "AI coding", "AI编程", "Agent",
+                 "AI agent marketplace", "agent skill", "agent skills"],
     "独立开发/变现": ["独立开发者", "独立开发", "indie", "solo founder", "MRR", "ARR", "$K",
                 "收入", "变现", "副业", "side project", "micro SaaS", "一人公司"],
     "内容/SEO": ["内容创作", "SEO", "博客", "blog", "写作", "writing", "content",
@@ -92,6 +93,9 @@ KEYWORD_MAP = {
                   "经验分享", "年入", "月入", "ARR", "MRR", "付费用户", "paying users",
                   "退出", "exit", "收购", "acquired", "acquihire"],
     # ── 业务情报赛道 ──
+    "ClawHub/Agent生态": ["ClawHub", "clawhub", "clawhub.ai", "openclaw skill", "AI agent skill",
+                        "agent marketplace", "skill marketplace", "AI agent marketplace",
+                        "agent plugin", "agent tool"],
     "📡 业务情报": ["抖音运营", "抖音短视频技巧", "小红书运营", "情感赛道", "公众号写作",
                   "GEO搜索", "微信公众号", "今日头条运营", "微头条爆款", "番茄小说",
                   "AI写作技巧", "网文写作", "微信小店", "社交电商", "AI agent技能",
@@ -355,6 +359,31 @@ def fetch_huggingface_papers():
         # HF 间歇被墙 / ModelScope+PWC 均不可达 — 跳过
         # GitHub AI 和 HN·AI创业 已覆盖 AI 前沿论文/模型信息
         pass
+    return []
+
+
+def fetch_clawhub_skills():
+    """ClawHub 热门技能 — 从 clawhub.ai API 抓取最新/最热技能"""
+    items = []
+    try:
+        # ClawHub registry API — 获取最新技能列表
+        data = json.loads(http_get(
+            "https://api.clawhub.ai/api/v1/skills?sort=latest&limit=15",
+            timeout=15
+        ))
+        for s in (data if isinstance(data, list) else data.get("skills", data.get("items", [])))[:15]:
+            name = (s.get("name") or s.get("title") or "").strip()
+            slug = s.get("slug", "")
+            desc = (s.get("description") or "")[:80]
+            if name:
+                items.append({
+                    "title": f"[ClawHub] {name} — {desc}" if desc else f"[ClawHub] {name}",
+                    "url": f"https://clawhub.ai/skills/{slug}" if slug else "https://clawhub.ai/skills",
+                    "source": "ClawHub", "ts": 0, "points": s.get("downloads", 0) or s.get("stars", 0),
+                })
+        return items
+    except Exception as e:
+        print(f"  ⚠️  ClawHub API 不可达: {e}", file=sys.stderr)
     return []
 
 
@@ -822,6 +851,8 @@ def main():
     raw += fetch_huggingface_papers()
     print("  🔍 GitHub AI 趋势...", file=sys.stderr)
     raw += fetch_github_trending_ai()
+    print("  🔍 ClawHub 热门技能...", file=sys.stderr)
+    raw += fetch_clawhub_skills()
     print("  🔍 业务情报 (7赛道)...", file=sys.stderr)
     biz_items = [] if args.no_biz_intel else _search_business_intel_queries()
     if args.no_biz_intel:
